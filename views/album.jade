@@ -1,0 +1,30 @@
+doctype 5
+html(lang="eng")
+    head
+        title Photo Album
+        link(rel='stylesheet', href='/css/site.css')
+    body
+       div#container
+          h1 Photo Album
+          nav
+            ul
+                - if(!album.root)
+                    - for(var i=0;i<breadcrumb.length;i++){
+                        li 
+                            a(href="#{breadcrumb[i].url}") #{breadcrumb[i].name}
+                        - if(i!=breadcrumb.length-1){
+                            li >
+                    - }}    
+          ul#albums
+                - album.albums.forEach(function(album){
+                    li
+                       a.album(href="#{root}/#{album.path}",title="#{album.name}")
+                            img(src="/#{directory}/#{album.thumb}",alt="#{album.name}")
+                            span #{album.name}
+                - })
+                - album.photos.forEach(function(photo){
+                    li
+                        a.photo(href="#{root}/#{photo.path}",title="#{photo.name}")
+                            img(src="/#{directory}/#{photo.path}",alt="#{photo.name}")
+                - })
+

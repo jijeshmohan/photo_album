@@ -1,0 +1,21 @@
+doctype 5
+html(lang='eng')
+    head
+        title Photo Album
+        link(rel='stylesheet', href='/css/site.css')
+    body
+        div#container
+          h1 Photo Album
+          nav
+            ul
+                - for(var i=0;i<breadcrumb.length;i++){
+                    li 
+                        a(href="#{breadcrumb[i].url}") #{breadcrumb[i].name}
+                    - if(i!=breadcrumb.length-1){
+                        li >
+                - }} 
+
+ 
+          div.image
+            img(src='/#{directory}/#{photo.path}', alt="#{photo.name}")
+            h2 #{photo.name}    
